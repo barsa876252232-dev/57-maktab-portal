@@ -1,0 +1,185 @@
+
+<!
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>57BOYSUN | Raqamli ta’lim portali</title>    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        html { scroll-behavior: smooth; }
+        section { scroll-margin-top: 20px; }
+        .section-title { margin-bottom: 22px; }
+        .news { margin-bottom: 18px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">57BOYSUN <span>RAQAMLI TA’LIM PORTALI</span></div>
+    <p>Rasmiy ta’lim portali</p>
+
+    <nav>
+        <a href="#home">Bosh sahifa</a>
+        <a href="#statistics">Statistika</a>
+        <a href="#about">Maktab haqida</a>
+        <a href="#features">Imkoniyatlar</a>
+        <a href="#news">Yangiliklar</a>
+        <a href="#schedule">Dars jadvali</a>
+        <a href="#ai">AI yordamchi</a>
+        <a href="#tests">Online test</a>
+        <a href="#contact">Bog‘lanish</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h1>Kelajak sari bilim bilan!</h1>
+    <p>Boysun tumani 57-sonli umumta’lim maktabining rasmiy ta’lim portaliga xush kelibsiz.</p>
+    <a href="#about" class="btn">Maktab haqida</a>
+</section>
+
+<main>
+
+    <section id="statistics">
+        <h2 class="section-title">📊 Maktab statistikasi</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <h2>400+</h2>
+                <p>O‘quvchilar</p>
+            </div>
+            <div class="stat-card">
+                <h2>11</h2>
+                <p>Sinf</p>
+            </div>
+            <div class="stat-card">
+                <h2>57</h2>
+                <p>Maktab raqami</p>
+            </div>
+            <div class="stat-card">
+                <h2>IT</h2>
+                <p>Zamonaviy texnologiyalar</p>
+            </div>
+        </div>
+    </section>
+
+    <br><br>
+
+    <section id="about">
+        <h2 class="section-title">🏫 Maktab haqida</h2>
+        <div class="card">
+            <h3>57BOYSUN</h3>
+            <p>Boysun tumani 57-sonli umumta’lim maktabi — bilim, tarbiya va zamonaviy texnologiyalar maskani.</p>
+            <br>
+            <h3>Maqsadimiz</h3>
+            <p>Bilimli, mustaqil fikrlaydigan va zamonaviy texnologiyalarni egallagan yoshlarni tarbiyalash.</p>
+        </div>
+    </section>
+
+    <br><br>
+
+    <section id="features">
+        <h2 class="section-title">🚀 Portal imkoniyatlari</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>📚 Elektron dars jadvali</h3>
+                <p>Sinflar bo‘yicha dars jadvalini ko‘rish.</p>
+            </div>
+            <div class="card">
+                <h3>🤖 AI yordamchi</h3>
+                <p>Sun’iy intellekt orqali savollarga javob olish.</p>
+            </div>
+            <div class="card">
+                <h3>📝 Online testlar</h3>
+                <p>Bilimlarni interaktiv testlar orqali tekshirish.</p>
+            </div>
+            <div class="card">
+                <h3>📖 Elektron kutubxona</h3>
+                <p>O‘quv materiallari va foydali manbalar.</p>
+            </div>
+            <div class="card">
+                <h3>🏆 Yutuqlar</h3>
+                <p>O‘quvchilar erishgan natijalar va yutuqlar.</p>
+            </div>
+            <div class="card">
+                <h3>📢 E’lonlar</h3>
+                <p>Maktabdagi muhim yangilik va xabarlar.</p>
+            </div>
+        </div>
+    </section>
+
+    <br><br>
+
+    <section id="news">
+        <h2 class="section-title">📢 Maktab yangiliklari</h2>
+        <div class="news">
+            <h3>💻 IT va sun’iy intellekt</h3>
+            <p>Maktabda axborot texnologiyalari va sun’iy intellekt bo‘yicha yangi tashabbuslar rivojlantirilmoqda.</p>
+        </div>
+        <div class="news">
+            <h3>📚 Ta’lim yangiliklari</h3>
+            <p>Maktabdagi tadbirlar, tanlovlar va muhim e’lonlar shu bo‘limda joylashtiriladi.</p>
+        </div>
+    </section>
+
+    <br><br>
+
+    <section id="schedule">
+        <h2 class="section-title">📚 Dars jadvali</h2>
+        <div class="card">
+            <p>1–11-sinflar uchun dars jadvallari shu bo‘limda joylashtiriladi.</p>
+        </div>
+    </section>
+
+    <br><br>
+
+    <section id="ai">
+        <h2 class="section-title">🤖 AI yordamchi</h2>
+        <div class="card">
+            <p>Sun’iy intellekt yordamida savollarga javob olish imkoniyati.</p>
+            <p>AI yordamchi keyingi bosqichda ulanadi.</p>
+        </div>
+    </section>
+
+    <br><br>
+
+<section id="tests">
+    <h2 class="section-title">📝 Online testlar</h2>
+
+    <div class="card">
+        <h3>Bilimingizni sinab ko‘ring!</h3>
+
+        <p>
+            Sinfingiz va faningizni tanlang.
+            20 ta savolga javob berib, natijangizni bilib oling.
+        </p>
+
+        <a href="/testlar" class="btn">
+            🚀 Testni boshlash
+        </a>
+    </div>
+</section>        <div class="card">
+            <p>Fanlar va sinflar bo‘yicha interaktiv testlar keyingi bosqichda qo‘shiladi.</p>
+        </div>
+    </section>
+
+    <br><br>
+
+    <section id="contact">
+        <h2 class="section-title">📞 Bog‘lanish</h2>
+        <div class="card">
+            <p><b>Maktab:</b> Boysun tumani 57-sonli umumta’lim maktabi</p>
+            <p><b>Telegram:</b> @temurbekabdusalimov</p>
+            <p><b>Yo‘nalish:</b> IT va sun’iy intellekt</p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    © 2026 57BOYSUN
+    <p>Bilim — kelajak poydevori!</p>
+</footer>
+
+</body>
+</html>
+

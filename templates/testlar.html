@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online test | 57BOYSUN</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .test-container {
+            max-width: 850px;
+            margin: 30px auto;
+        }
+
+        .test-card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .test-option {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f1f5f9;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .test-option:hover {
+            background: #dbeafe;
+        }
+
+        .test-option input {
+            margin-right: 9px;
+        }
+
+        .class-grid,
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .class-grid .btn,
+        .subject-grid .btn {
+            text-align: center;
+            margin: 0;
+        }
+
+        .result {
+            text-align: center;
+            padding: 25px;
+            background: #eff6ff;
+            border-radius: 12px;
+        }
+
+        .result h2 {
+            font-size: 36px;
+        }
+
+        .correct {
+            color: #15803d;
+        }
+
+        .wrong {
+            color: #dc2626;
+        }
+
+        .submit-btn {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">57BOYSUN <span>RAQAMLI TA’LIM PORTALI</span></div>
+    <p>Rasmiy ta’lim portali</p>
+
+    <nav>
+        <a href="/">Bosh sahifa</a>
+        <a href="/haqida">Maktab haqida</a>
+        <a href="/yangiliklar">Yangiliklar</a>
+        <a href="/testlar">Online test</a>
+        <a href="/boglanish">Bog‘lanish</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>📝 Online test tizimi</h1>
+    <p>Bilimingizni sinab ko‘ring!</p>
+</section>
+
+<main class="test-container">
+
+    <div class="card">
+
+        {% if mode == "sinflar" %}
+
+            <h2>🎓 Sinfingizni tanlang</h2>
+            <p>Test ishlash uchun o‘z sinfingizni tanlang.</p>
+
+            <div class="class-grid">
+                {% for sinf in sinflar %}
+                    <a class="btn"
+                       href="{{ url_for('fan_tanlash', sinf=sinf) }}">
+                        {{ sinf }}
+                    </a>
+                {% endfor %}
+            </div>
+
+        {% elif mode == "fanlar" %}
+
+            <h2>📚 {{ sinf }} sinfi</h2>
+            <p>Test ishlamoqchi bo‘lgan faningizni tanlang.</p>
+
+            {% if fanlar %}
+                <div class="subject-grid">
+                    {% for fan in fanlar %}
+                        <a class="btn"
+                           href="{{ url_for('test_ishlash', sinf=sinf, fan=fan) }}">
+                            {{ fan }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Bu sinf uchun fanlar va test savollari hali kiritilmagan.</p>
+            {% endif %}
+
+            <br>
+            <a href="{{ url_for('testlar') }}" class="btn">
+                ⬅️ Sinflarga qaytish
+            </a>
+
+        {% elif mode == "test" %}
+
+            <h2>{{ sinf }} | {{ fan }}</h2>
+            <p>Quyidagi savollarga javob bering.</p>
+            <p><b>Jami savollar:</b> {{ savollar|length }}</p>
+
+            <form method="POST">
+
+                {% for savol in savollar %}
+                    {% set savol_index = loop.index0 %}
+
+                    <div class="test-card">
+
+                        <h3>
+                            {{ loop.index }}.
+                            {{ savol.savol }}
+                        </h3>
+
+                        {% for variant in savol.variantlar %}
+                            <label class="test-option">
+                                <input
+                                    type="radio"
+                                    name="savol_{{ savol_index }}"
+                                    value="{{ loop.index0 }}"
+                                    required
+                                >
+
+                                {{ ["A", "B", "C", "D"][loop.index0] }}.
+                                {{ variant }}
+                            </label>
+                        {% endfor %}
+
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn submit-btn">
+                    ✅ Testni yakunlash
+                </button>
+
+            </form>
+
+        {% elif mode == "natija" %}
+
+            <div class="result">
+
+                <h2>🏆 Natijangiz</h2>
+
+                <p><b>Sinf:</b> {{ sinf }}</p>
+                <p><b>Fan:</b> {{ fan }}</p>
+
+                <h2>{{ togri }} / {{ jami }}</h2>
+
+                <h3>{{ foiz }}%</h3>
+
+                <p>To‘g‘ri javoblar: {{ togri }}</p>
+                <p>Noto‘g‘ri javoblar: {{ jami - togri }}</p>
+
+            </div>
+
+            <br>
+
+            <h3>📋 Javoblar tahlili</h3>
+
+            {% for javob in javoblar %}
+                <div class="test-card">
+
+                    <p>
+                        <b>{{ loop.index }}. {{ javob.savol }}</b>
+                    </p>
+
+                    {% if javob.togri %}
+                        <p class="correct">✅ To‘g‘ri javob</p>
+                    {% else %}
+                        <p class="wrong">❌ Noto‘g‘ri javob</p>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+
+            <a href="{{ url_for('testlar') }}" class="btn">
+                🔄 Yana test ishlash
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</main>
+
+<footer>
+    © 2026 57BOYSUN
+    <p>Bilim — kelajak poydevori!</p>
+</footer>
+
+</body>
+</html>
+
